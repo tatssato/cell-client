@@ -1,1 +1,0 @@
-{"version":3,"file":"connection.js","sources":["../src/connection.js"],"sourcesContent":["import { Connection } from \"@holo-host/web-sdk\";\n\nexport class WebSdkConnection extends Connection {}"],"names":["Connection"],"mappings":";;AAEO,MAAM,gBAAgB,SAASA,cAAU,CAAC;;;;"}
