@@ -1,5 +1,5 @@
 {
-  "name": "@holochain-open-dev/cell-connection",
+  "name": "@holochain-open-dev/cell-client",
   "version": "0.0.1",
   "description": "Temporary wrapper around AppWebsocket and @holo-host/web-sdk",
   "main": "dist/index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/holochain-open-dev/cell-connection.git"
+    "url": "git+https://github.com/holochain-open-dev/cell-client.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/holochain-open-dev/cell-connection/issues"
+    "url": "https://github.com/holochain-open-dev/cell-client/issues"
   },
-  "homepage": "https://github.com/holochain-open-dev/cell-connection#readme",
+  "homepage": "https://github.com/holochain-open-dev/cell-client#readme",
   "dependencies": {
     "@holo-host/web-sdk": "^0.5.0",
     "@holochain/conductor-api": "0.0.4"
