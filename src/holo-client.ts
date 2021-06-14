@@ -30,4 +30,5 @@ export class HoloClient implements CellClient {
   }
 }
 
+//@ts-ignore
 export { Connection as WebSdkConnection };
