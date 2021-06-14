@@ -33,11 +33,11 @@ async function setupHolochainClient() {
 ## Connecting to Chaperone (Holo)
 
 ```ts
-import { HoloClient } from "@holochain-open-dev/cell-client";
+import { HoloClient, WebSdkConnection } from "@holochain-open-dev/cell-client";
 import { AppWebsocket } from "@holochain/conductor-api";
 
 async function setupHoloClient() {
-  const connection = new Connection("http://localhost:24273"); // URL for chaperone
+  const connection = new WebSdkConnection("http://localhost:24273"); // URL for chaperone
 
   await connection.ready();
   await connection.signIn();
