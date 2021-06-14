@@ -1,1 +1,0 @@
-{"version":3,"file":"types.js","sourceRoot":"","sources":["../src/types.ts"],"names":[],"mappings":"","sourcesContent":["export type Branding = {\n  app_name: string;\n  logo_url?: string;\n  info_link?: string;\n  publisher_name?: string;\n};\n"]}
