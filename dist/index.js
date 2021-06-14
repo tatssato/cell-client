@@ -1514,7 +1514,7 @@ var require$$1 = /*@__PURE__*/getAugmentedNamespace(events);
 const TESTING = commonjsGlobal.COMB !== undefined;
 
 if (!TESTING)
-  COMB = build.COMB;
+  window.COMB = build.COMB;
 
 const { EventEmitter } = require$$1;
 
