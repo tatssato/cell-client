@@ -1,4 +1,5 @@
 import "@holo-host/comb";
+//@ts-ignore
 import { Connection } from "@holo-host/web-sdk";
 export class HoloClient {
     constructor(connection, cellData, branding) {
