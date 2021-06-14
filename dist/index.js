@@ -1514,7 +1514,7 @@ var require$$1 = /*@__PURE__*/getAugmentedNamespace(events);
 const TESTING = commonjsGlobal.COMB !== undefined;
 
 if (!TESTING)
-  window.window.COMB = build.COMB;
+  window.COMB = build.COMB;
 
 const { EventEmitter } = require$$1;
 
@@ -1685,5 +1685,5 @@ class HolochainClient {
     }
 }
 
-export { HoloClient, HolochainClient };
+export { HoloClient, HolochainClient, src as __moduleExports };
 //# sourceMappingURL=index.js.map

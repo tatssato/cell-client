@@ -12,7 +12,6 @@ export default {
   plugins: [
     replace({
       "process.env.NODE_ENV": '"production"',
-      "COMB = require(": "window.COMB = require(",
       delimiters: ["", ""],
     }),
     typescript(),
