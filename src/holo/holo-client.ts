@@ -2,11 +2,11 @@ import { CellClient } from "../cell-client";
 
 import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
 import { Branding } from "../types";
-import { WebSdkConnection } from "./connection";
+import { Connection } from "./connection";
 
 export class HoloClient implements CellClient {
   constructor(
-    protected connection: WebSdkConnection,
+    protected connection: Connection,
     protected cellData: InstalledCell,
     protected branding: Branding
   ) {}
@@ -25,7 +25,7 @@ export class HoloClient implements CellClient {
   }
 
   addSignalHandler(signalHandler: AppSignalCb) {
-    new WebSdkConnection(
+    new Connection(
       this.connection.chaperone_url,
       signalHandler,
       this.branding
