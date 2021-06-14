@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Temporary wrapper around @holochain/conductor-api and @holo-host/web-sdk",
   "main": "dist/index.js",
-  "typings": "src/holo/types.d.ts",
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js",
     "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
