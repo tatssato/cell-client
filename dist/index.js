@@ -1,4 +1,4 @@
-import { AppWebsocket } from '@holochain/conductor-api';
+import * as ConductorApi from '@holochain/conductor-api';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -1165,7 +1165,7 @@ class HolochainClient {
         });
     }
     addSignalHandler(signalHandler) {
-        AppWebsocket.connect(this.appWebsocket.client.socket.url, 15000, signalHandler);
+        ConductorApi.AppWebsocket.connect(this.appWebsocket.client.socket.url, 15000, signalHandler);
     }
 }
 
