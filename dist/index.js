@@ -430,13 +430,7 @@ function () {
   return Model;
 }();
 
-module.exports = Postmate;
-
-var postmate = /*#__PURE__*/Object.freeze({
-	__proto__: null
-});
-
-var require$$0 = /*@__PURE__*/getAugmentedNamespace(postmate);
+var postmate = Postmate;
 
 var async_with_timeout = {};
 
@@ -586,7 +580,7 @@ var __importDefault = (commonjsGlobal && commonjsGlobal.__importDefault) || func
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 build.__esModule = true;
-var postmate_1 = __importDefault(require$$0);
+var postmate_1 = __importDefault(postmate);
 var async_with_timeout_1 = __importDefault(async_with_timeout);
 var async_with_timeout_2 = async_with_timeout;
 /**
