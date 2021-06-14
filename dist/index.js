@@ -1686,5 +1686,6 @@ class HolochainClient {
     }
 }
 
-export { HoloClient, HolochainClient };
+var Connection$1 = src.Connection;
+export { HoloClient, HolochainClient, Connection$1 as WebSdkConnection };
 //# sourceMappingURL=index.js.map
