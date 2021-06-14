@@ -24,29 +24,29 @@ async function setupHolochainClient() {
   const appInfo = await this._appWebsocket.appInfo({
     installed_app_id: "test-app",
   });
-  const cellId = appInfo.cell_data[0].cell_id;
+  const cellData = appInfo.cell_data[0];
 
-  return new HolochainClient(appWs, cellId);
+  return new HolochainClient(appWs, cellData);
 }
 ```
 
 ## Connecting to Chaperone (Holo)
 
 ```ts
-import { HoloClient } from "@holochain-open-dev/cell-client";
+import { HoloClient, WebSdkConnection } from "@holochain-open-dev/cell-client";
 import { AppWebsocket } from "@holochain/conductor-api";
 
 async function setupHoloClient() {
-  const connection = new Connection("http://localhost:24273"); // URL for chaperone
+  const connection = new WebSdkConnection("http://localhost:24273"); // URL for chaperone
 
   await connection.ready();
   await connection.signIn();
 
   const appInfo = await connection.appInfo();
 
-  const cellNick = appInfo.cell_data[0].cell_nick;
+  const cellData = appInfo.cell_data[0];
 
-  return new HoloClient(connection, cellNick);
+  return new HoloClient(connection, cellData);
 }
 ```
 

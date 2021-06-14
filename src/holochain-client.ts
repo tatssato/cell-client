@@ -1,8 +1,15 @@
-import { AppSignalCb, AppWebsocket, CellId } from "@holochain/conductor-api";
+import * as ConductorApi from "@holochain/conductor-api";
 import { CellClient } from "./cell-client";
 
 export class HolochainClient implements CellClient {
-  constructor(protected appWebsocket: AppWebsocket, protected cellId: CellId) {}
+  constructor(
+    protected appWebsocket: ConductorApi.AppWebsocket,
+    protected cellData: ConductorApi.InstalledCell
+  ) {}
+
+  get cellId() {
+    return this.cellData.cell_id;
+  }
 
   callZome(zomeName: string, fnName: string, payload: any): Promise<any> {
     return this.appWebsocket.callZome({
@@ -15,8 +22,8 @@ export class HolochainClient implements CellClient {
     });
   }
 
-  addSignalHandler(signalHandler: AppSignalCb) {
-    AppWebsocket.connect(
+  addSignalHandler(signalHandler: ConductorApi.AppSignalCb) {
+    ConductorApi.AppWebsocket.connect(
       this.appWebsocket.client.socket.url,
       15000,
       signalHandler

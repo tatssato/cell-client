@@ -1,10 +1,10 @@
 {
   "name": "@holochain-open-dev/cell-client",
   "version": "0.0.1",
-  "description": "Temporary wrapper around AppWebsocket and @holo-host/web-sdk",
+  "description": "Temporary wrapper around @holochain/conductor-api and @holo-host/web-sdk",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && rollup -c rollup.config.js",
     "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
   },
   "repository": {
@@ -18,11 +18,19 @@
   },
   "homepage": "https://github.com/holochain-open-dev/cell-client#readme",
   "dependencies": {
-    "@holo-host/web-sdk": "^0.5.0",
+    "@holo-host/web-sdk": "git+https://github.com/guillemcordoba/web-sdk.git#develop",
     "@holochain/conductor-api": "0.0.4"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-replace": "^2.4.2",
+    "@rollup/plugin-typescript": "^8.2.1",
     "gh-pages": "^3.2.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.51.2",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "tslib": "^2.3.0",
     "typescript": "^4.3.2"
   }
 }
