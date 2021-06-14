@@ -1,7 +1,6 @@
 import { CellClient } from "./cell-client";
 import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
 import { Branding } from "./types";
-import { Connection } from "@holo-host/web-sdk";
 export declare class HoloClient implements CellClient {
     protected connection: any;
     protected cellData: InstalledCell;
@@ -11,4 +10,3 @@ export declare class HoloClient implements CellClient {
     callZome(zomeName: string, fnName: string, payload: any): Promise<any>;
     addSignalHandler(signalHandler: AppSignalCb): void;
 }
-export { Connection as WebSdkConnection };

@@ -29,6 +29,3 @@ export class HoloClient implements CellClient {
     new Connection(this.connection.chaperone_url, signalHandler, this.branding);
   }
 }
-
-//@ts-ignore
-export { Connection as WebSdkConnection };
