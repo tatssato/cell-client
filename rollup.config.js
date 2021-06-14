@@ -17,6 +17,11 @@ export default {
     typescript(),
     builtins(),
     resolve(),
-    commonjs({ include: ["node_modules/@holo-host/web-sdk/**/*"] }),
+    commonjs({
+      include: [
+        "node_modules/@holo-host/web-sdk/**/*",
+        "node_modules/@holo-host/comb/**/*",
+      ],
+    }),
   ],
 };
