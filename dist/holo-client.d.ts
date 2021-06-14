@@ -2,6 +2,7 @@ import { CellClient } from "./cell-client";
 import "@holo-host/comb";
 import { Connection } from "@holo-host/web-sdk";
 import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
+import { Branding } from "./types";
 export declare class HoloClient implements CellClient {
     protected connection: Connection;
     protected cellData: InstalledCell;

@@ -1,4 +1,4 @@
-type Branding = {
+export type Branding = {
   app_name: string;
   logo_url?: string;
   info_link?: string;
