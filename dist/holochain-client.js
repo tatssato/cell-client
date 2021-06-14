@@ -1,8 +1,11 @@
-import { AppWebsocket } from "@holochain/conductor-api";
+import { AppWebsocket, } from "@holochain/conductor-api";
 export class HolochainClient {
-    constructor(appWebsocket, cellId) {
+    constructor(appWebsocket, cellData) {
         this.appWebsocket = appWebsocket;
-        this.cellId = cellId;
+        this.cellData = cellData;
+    }
+    get cellId() {
+        return this.cellData.cell_id;
     }
     callZome(zomeName, fnName, payload) {
         return this.appWebsocket.callZome({

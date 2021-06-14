@@ -2,17 +2,26 @@ import { CellClient } from "./cell-client";
 import "@holo-host/comb";
 
 import { Connection, Branding } from "@holo-host/web-sdk";
-import { AppSignalCb } from "@holochain/conductor-api";
+import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
 
 export class HoloClient implements CellClient {
   constructor(
     protected connection: Connection,
-    protected cellNick: string,
+    protected cellData: InstalledCell,
     protected branding: Branding
   ) {}
 
+  get cellId() {
+    return this.cellData.cell_id;
+  }
+
   callZome(zomeName: string, fnName: string, payload: any): Promise<any> {
-    return this.connection.zomeCall(this.cellNick, zomeName, fnName, payload);
+    return this.connection.zomeCall(
+      this.cellData.cell_nick,
+      zomeName,
+      fnName,
+      payload
+    );
   }
 
   addSignalHandler(signalHandler: AppSignalCb) {

@@ -1,8 +1,9 @@
-import { AppSignalCb } from "@holochain/conductor-api";
+import { AppSignalCb, CellId } from "@holochain/conductor-api";
 
 export interface CellClient {
-    callZome(zomeName: string, fnName: string, payload: any): Promise<any>;
+  cellId: CellId;
 
-    addSignalHandler(signalHandler: AppSignalCb): void;
+  callZome(zomeName: string, fnName: string, payload: any): Promise<any>;
+
+  addSignalHandler(signalHandler: AppSignalCb): void;
 }
-

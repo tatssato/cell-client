@@ -24,9 +24,9 @@ async function setupHolochainClient() {
   const appInfo = await this._appWebsocket.appInfo({
     installed_app_id: "test-app",
   });
-  const cellId = appInfo.cell_data[0].cell_id;
+  const cellData = appInfo.cell_data[0];
 
-  return new HolochainClient(appWs, cellId);
+  return new HolochainClient(appWs, cellData);
 }
 ```
 
@@ -44,9 +44,9 @@ async function setupHoloClient() {
 
   const appInfo = await connection.appInfo();
 
-  const cellNick = appInfo.cell_data[0].cell_nick;
+  const cellData = appInfo.cell_data[0];
 
-  return new HoloClient(connection, cellNick);
+  return new HoloClient(connection, cellData);
 }
 ```
 
