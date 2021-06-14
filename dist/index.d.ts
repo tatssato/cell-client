@@ -1,4 +1,3 @@
 export * from "./cell-client";
-export * from "./holo/holo-client";
-export * from "./holo/connection";
+export * from "./holo-client";
 export * from "./holochain-client";

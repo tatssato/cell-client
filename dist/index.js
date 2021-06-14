@@ -1,5 +1,22 @@
 import { AppWebsocket } from '@holochain/conductor-api';
 
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function getAugmentedNamespace(n) {
+	if (n.__esModule) return n;
+	var a = Object.defineProperty({}, '__esModule', {value: true});
+	Object.keys(n).forEach(function (k) {
+		var d = Object.getOwnPropertyDescriptor(n, k);
+		Object.defineProperty(a, k, d.get ? d : {
+			enumerable: true,
+			get: function () {
+				return n[k];
+			}
+		});
+	});
+	return a;
+}
+
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -498,25 +515,8 @@ var ParentAPI = /** @class */ (function () {
 }());
 
 var build = /*#__PURE__*/Object.freeze({
-   __proto__: null
+	__proto__: null
 });
-
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function getAugmentedNamespace(n) {
-	if (n.__esModule) return n;
-	var a = Object.defineProperty({}, '__esModule', {value: true});
-	Object.keys(n).forEach(function (k) {
-		var d = Object.getOwnPropertyDescriptor(n, k);
-		Object.defineProperty(a, k, d.get ? d : {
-			enumerable: true,
-			get: function () {
-				return n[k];
-			}
-		});
-	});
-	return a;
-}
 
 var require$$0 = /*@__PURE__*/getAugmentedNamespace(build);
 
@@ -987,9 +987,9 @@ function unwrapListeners(arr) {
 }
 
 var events = /*#__PURE__*/Object.freeze({
-   __proto__: null,
-   'default': EventEmitter$1,
-   EventEmitter: EventEmitter$1
+	__proto__: null,
+	'default': EventEmitter$1,
+	EventEmitter: EventEmitter$1
 });
 
 var require$$1 = /*@__PURE__*/getAugmentedNamespace(events);
@@ -1128,6 +1128,7 @@ var src = {
   Connection,
 };
 
+//@ts-ignore
 class HoloClient {
     constructor(connection, cellData, branding) {
         this.connection = connection;
@@ -1168,6 +1169,5 @@ class HolochainClient {
     }
 }
 
-var Connection$1 = src.Connection;
-export { Connection$1 as Connection, HoloClient, HolochainClient };
+export { HoloClient, HolochainClient };
 //# sourceMappingURL=index.js.map
