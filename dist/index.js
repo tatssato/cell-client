@@ -15,7 +15,7 @@ class HoloClient {
         return this.connection.zomeCall(this.cellData.cell_nick, zomeName, fnName, payload);
     }
     addSignalHandler(signalHandler) {
-        new Connection(this.connection.chaperone_url, signalHandler, this.branding);
+        new Connection(this.connection.chaperone_url.origin, signalHandler, this.branding);
     }
 }
 
