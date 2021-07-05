@@ -30,11 +30,13 @@ async function setupHolochainClient() {
 }
 ```
 
+See all documentation for the `AppWebsocket` [here](https://github.com/holochain/holochain-conductor-api).
+
 ## Connecting to Chaperone (Holo)
 
 ```ts
-import { HoloClient, WebSdkConnection } from "@holochain-open-dev/cell-client";
-import { AppWebsocket } from "@holochain/conductor-api";
+import { HoloClient } from "@holochain-open-dev/cell-client";
+import { Connection as WebSdkConnection } from "@holo-host/web-sdk";
 
 async function setupHoloClient() {
   const connection = new WebSdkConnection("http://localhost:24273"); // URL for chaperone
