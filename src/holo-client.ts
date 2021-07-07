@@ -14,16 +14,25 @@ export class HoloClient implements CellClient {
     return this.cellData.cell_id;
   }
 
-  callZome(zomeName: string, fnName: string, payload: any): Promise<any> {
-    return this.connection.zomeCall(
+  async callZome(zomeName: string, fnName: string, payload: any): Promise<any> {
+    const result = await this.connection.zomeCall(
       this.cellData.cell_nick,
       zomeName,
       fnName,
       payload
     );
+
+    if (result.type === "error") {
+      throw new Error(result.payload);
+    }
+    return result;
   }
 
   addSignalHandler(signalHandler: AppSignalCb) {
-    new Connection(this.connection.chaperone_url.origin, signalHandler, this.branding);
+    new Connection(
+      this.connection.chaperone_url.origin,
+      signalHandler,
+      this.branding
+    );
   }
 }

@@ -10,8 +10,12 @@ class HoloClient {
     get cellId() {
         return this.cellData.cell_id;
     }
-    callZome(zomeName, fnName, payload) {
-        return this.connection.zomeCall(this.cellData.cell_nick, zomeName, fnName, payload);
+    async callZome(zomeName, fnName, payload) {
+        const result = await this.connection.zomeCall(this.cellData.cell_nick, zomeName, fnName, payload);
+        if (result.type === "error") {
+            throw new Error(result.payload);
+        }
+        return result;
     }
     addSignalHandler(signalHandler) {
         new Connection(this.connection.chaperone_url.origin, signalHandler, this.branding);
