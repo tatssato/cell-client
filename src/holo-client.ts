@@ -22,7 +22,7 @@ export class HoloClient implements CellClient {
       payload
     );
 
-    if (result.type === "error") {
+    if (result && result.type === "error") {
       throw new Error(result.payload);
     }
     return result;
