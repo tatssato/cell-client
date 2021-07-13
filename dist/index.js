@@ -13,7 +13,7 @@ class HoloClient {
     async callZome(zomeName, fnName, payload) {
         const result = await this.connection.zomeCall(this.cellData.cell_nick, zomeName, fnName, payload);
         if (result && result.type === "error") {
-            throw new Error(result.payload);
+            throw new Error(result.payload.message);
         }
         return result;
     }
