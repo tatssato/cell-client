@@ -20,7 +20,7 @@
   "dependencies": {
     "@holo-host/chaperone": "7.1.2",
     "@holo-host/web-sdk": "github:guillemcordoba/web-sdk#develop",
-    "@holochain/conductor-api": "0.0.4"
+    "@holochain/conductor-api": "0.1.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",
