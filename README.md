@@ -95,6 +95,8 @@ export class InvitationsStore {
   constructor(protected cellClient: CellClient) {
     cellClient.addSignalHandler((signal) => {
       // Do something with the signal: eg. update invitations dictionary
+    }).then(({ unsubscribe }) => {
+      this.unsubscribe = unsubscribe;
     });
   }
 }
