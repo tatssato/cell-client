@@ -1,13 +1,13 @@
 import { CellClient } from "./cell-client";
 
 import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
-import { Connection, Branding } from "@holo-host/web-sdk";
+import * as HoloSdk from "@holo-host/web-sdk";
 
 export class HoloClient implements CellClient {
   constructor(
     protected connection: any,
     protected cellData: InstalledCell,
-    protected branding: Branding
+    protected branding: HoloSdk.Branding
   ) {}
 
   get cellId() {
@@ -29,7 +29,7 @@ export class HoloClient implements CellClient {
   }
 
   async addSignalHandler(signalHandler: AppSignalCb) {
-    new Connection(
+    new HoloSdk.Connection(
       this.connection.chaperone_url.origin,
       signalHandler,
       this.branding

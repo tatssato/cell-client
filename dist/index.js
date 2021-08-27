@@ -1,5 +1,5 @@
-import { Connection } from '@holo-host/web-sdk';
-import * as ConductorApi from '@holochain/conductor-api';
+import * as HoloSdk from '@holo-host/web-sdk';
+import { AppWebsocket } from '@holochain/conductor-api';
 
 class HoloClient {
     constructor(connection, cellData, branding) {
@@ -18,7 +18,7 @@ class HoloClient {
         return result;
     }
     async addSignalHandler(signalHandler) {
-        new Connection(this.connection.chaperone_url.origin, signalHandler, this.branding);
+        new HoloSdk.Connection(this.connection.chaperone_url.origin, signalHandler, this.branding);
         return {
             unsubscribe: () => {
                 // TODO: disconnect connection
@@ -46,7 +46,7 @@ class HolochainClient {
         });
     }
     async addSignalHandler(signalHandler) {
-        const appWs = await ConductorApi.AppWebsocket.connect(this.appWebsocket.client.socket.url, 15000, signalHandler);
+        const appWs = await AppWebsocket.connect(this.appWebsocket.client.socket.url, 15000, signalHandler);
         return {
             unsubscribe: () => {
                 appWs.client.close();

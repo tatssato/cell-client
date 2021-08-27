@@ -1,10 +1,14 @@
-import * as ConductorApi from "@holochain/conductor-api";
+import {
+  AppWebsocket,
+  InstalledCell,
+  AppSignalCb,
+} from "@holochain/conductor-api";
 import { CellClient } from "./cell-client";
 
 export class HolochainClient implements CellClient {
   constructor(
-    protected appWebsocket: ConductorApi.AppWebsocket,
-    protected cellData: ConductorApi.InstalledCell
+    protected appWebsocket: AppWebsocket,
+    protected cellData: InstalledCell
   ) {}
 
   get cellId() {
@@ -22,8 +26,8 @@ export class HolochainClient implements CellClient {
     });
   }
 
-  async addSignalHandler(signalHandler: ConductorApi.AppSignalCb) {
-    const appWs = await ConductorApi.AppWebsocket.connect(
+  async addSignalHandler(signalHandler: AppSignalCb) {
+    const appWs = await AppWebsocket.connect(
       this.appWebsocket.client.socket.url,
       15000,
       signalHandler
