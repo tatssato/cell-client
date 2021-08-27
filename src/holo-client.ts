@@ -28,11 +28,17 @@ export class HoloClient implements CellClient {
     return result;
   }
 
-  addSignalHandler(signalHandler: AppSignalCb) {
+  async addSignalHandler(signalHandler: AppSignalCb) {
     new Connection(
       this.connection.chaperone_url.origin,
       signalHandler,
       this.branding
     );
+
+    return {
+      unsubscribe: () => {
+        // TODO: disconnect connection
+      },
+    };
   }
 }

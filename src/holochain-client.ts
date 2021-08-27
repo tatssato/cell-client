@@ -22,11 +22,17 @@ export class HolochainClient implements CellClient {
     });
   }
 
-  addSignalHandler(signalHandler: ConductorApi.AppSignalCb) {
-    ConductorApi.AppWebsocket.connect(
+  async addSignalHandler(signalHandler: ConductorApi.AppSignalCb) {
+    const appWs = await ConductorApi.AppWebsocket.connect(
       this.appWebsocket.client.socket.url,
       15000,
       signalHandler
     );
+
+    return {
+      unsubscribe: () => {
+        appWs.client.close();
+      },
+    };
   }
 }

@@ -8,5 +8,7 @@ export declare class HoloClient implements CellClient {
     constructor(connection: any, cellData: InstalledCell, branding: Branding);
     get cellId(): import("@holochain/conductor-api").CellId;
     callZome(zomeName: string, fnName: string, payload: any): Promise<any>;
-    addSignalHandler(signalHandler: AppSignalCb): void;
+    addSignalHandler(signalHandler: AppSignalCb): Promise<{
+        unsubscribe: () => void;
+    }>;
 }

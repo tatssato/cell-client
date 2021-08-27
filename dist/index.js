@@ -17,8 +17,13 @@ class HoloClient {
         }
         return result;
     }
-    addSignalHandler(signalHandler) {
+    async addSignalHandler(signalHandler) {
         new Connection(this.connection.chaperone_url.origin, signalHandler, this.branding);
+        return {
+            unsubscribe: () => {
+                // TODO: disconnect connection
+            },
+        };
     }
 }
 
@@ -40,8 +45,13 @@ class HolochainClient {
             provenance: this.cellId[1],
         });
     }
-    addSignalHandler(signalHandler) {
-        ConductorApi.AppWebsocket.connect(this.appWebsocket.client.socket.url, 15000, signalHandler);
+    async addSignalHandler(signalHandler) {
+        const appWs = await ConductorApi.AppWebsocket.connect(this.appWebsocket.client.socket.url, 15000, signalHandler);
+        return {
+            unsubscribe: () => {
+                appWs.client.close();
+            },
+        };
     }
 }
 

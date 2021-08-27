@@ -21,7 +21,7 @@ import { AppWebsocket } from "@holochain/conductor-api";
 async function setupHolochainClient() {
   const appWs = await AppWebsocket.connect("ws://localhost:8888");
 
-  const appInfo = await this._appWebsocket.appInfo({
+  const appInfo = await appWs.appInfo({
     installed_app_id: "test-app",
   });
   const cellData = appInfo.cell_data[0];
@@ -95,6 +95,8 @@ export class InvitationsStore {
   constructor(protected cellClient: CellClient) {
     cellClient.addSignalHandler((signal) => {
       // Do something with the signal: eg. update invitations dictionary
+    }).then(({ unsubscribe }) => {
+      this.unsubscribe = unsubscribe;
     });
   }
 }

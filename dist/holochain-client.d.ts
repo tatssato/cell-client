@@ -6,5 +6,7 @@ export declare class HolochainClient implements CellClient {
     constructor(appWebsocket: ConductorApi.AppWebsocket, cellData: ConductorApi.InstalledCell);
     get cellId(): ConductorApi.CellId;
     callZome(zomeName: string, fnName: string, payload: any): Promise<any>;
-    addSignalHandler(signalHandler: ConductorApi.AppSignalCb): void;
+    addSignalHandler(signalHandler: ConductorApi.AppSignalCb): Promise<{
+        unsubscribe: () => void;
+    }>;
 }

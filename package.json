@@ -1,8 +1,10 @@
 {
   "name": "@holochain-open-dev/cell-client",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Temporary wrapper around @holochain/conductor-api and @holo-host/web-sdk",
   "main": "dist/index.js",
+  "module": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js",
     "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
