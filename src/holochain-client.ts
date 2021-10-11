@@ -15,15 +15,23 @@ export class HolochainClient implements CellClient {
     return this.cellData.cell_id;
   }
 
-  callZome(zomeName: string, fnName: string, payload: any): Promise<any> {
-    return this.appWebsocket.callZome({
-      cap: null as any,
-      cell_id: this.cellId,
-      zome_name: zomeName,
-      fn_name: fnName,
-      payload: payload,
-      provenance: this.cellId[1],
-    });
+  callZome(
+    zomeName: string,
+    fnName: string,
+    payload: any,
+    timeout = 15000
+  ): Promise<any> {
+    return this.appWebsocket.callZome(
+      {
+        cap: null as any,
+        cell_id: this.cellId,
+        zome_name: zomeName,
+        fn_name: fnName,
+        payload: payload,
+        provenance: this.cellId[1],
+      },
+      timeout
+    );
   }
 
   async addSignalHandler(signalHandler: AppSignalCb) {
