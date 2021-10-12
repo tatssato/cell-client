@@ -7,7 +7,7 @@ export class HoloClient implements CellClient {
   constructor(
     protected connection: any,
     protected cellData: InstalledCell,
-    protected branding: HoloSdk.Branding
+    protected branding: any
   ) {}
 
   get cellId() {
