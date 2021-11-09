@@ -4,11 +4,21 @@ import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
 import HoloSdk from "@holo-host/web-sdk";
 
 export class HoloClient implements CellClient {
-  constructor(
-    protected connection: any,
+  connection: any;
+
+  #handlers: Array<AppSignalCb> = [];
+
+  private constructor(
+    protected url: string,
     protected cellData: InstalledCell,
     protected branding: any
-  ) {}
+  ) {
+    this.connection = new HoloSdk.Connection(
+      this.connection.chaperone_url.origin,
+      (s: any) => this.handleSignal(s),
+      this.branding
+    );
+  }
 
   get cellId() {
     return this.cellData.cell_id;
@@ -16,7 +26,7 @@ export class HoloClient implements CellClient {
 
   async callZome(zomeName: string, fnName: string, payload: any): Promise<any> {
     const result = await this.connection.zomeCall(
-      this.cellData.cell_nick,
+      this.cellData.role_id,
       zomeName,
       fnName,
       payload
@@ -29,16 +39,19 @@ export class HoloClient implements CellClient {
   }
 
   async addSignalHandler(signalHandler: AppSignalCb) {
-    new HoloSdk.Connection(
-      this.connection.chaperone_url.origin,
-      signalHandler,
-      this.branding
-    );
+    this.#handlers.push(signalHandler);
 
     return {
       unsubscribe: () => {
-        // TODO: disconnect connection
+        const index = this.#handlers.findIndex((h) => h === signalHandler);
+        this.#handlers.splice(index, 1);
       },
     };
+  }
+
+  private handleSignal(signal: any) {
+    for (const handler of this.#handlers) {
+      handler(signal);
+    }
   }
 }

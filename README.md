@@ -39,7 +39,7 @@ import { HoloClient } from "@holochain-open-dev/cell-client";
 import { Connection as WebSdkConnection } from "@holo-host/web-sdk";
 
 async function setupHoloClient() {
-  const connection = new WebSdkConnection("http://localhost:24273"); // URL for chaperone
+  const connection = new WebSdkConnection(); // URL for chaperone
 
   await connection.ready();
   await connection.signIn();
@@ -48,7 +48,7 @@ async function setupHoloClient() {
 
   const cellData = appInfo.cell_data[0];
 
-  return new HoloClient(connection, cellData);
+  return new HoloClient("http://localhost:24273", cellData);
 }
 ```
 
