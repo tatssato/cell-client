@@ -13,7 +13,7 @@ export default {
   external: ["@holochain/conductor-api"],
   plugins: [
     replace({
-      '  COMB = ': '  window.COMB = ',
+      '  COMB = ': '  if (typeof window !== "undefined") window.COMB = ',
       "process.env.NODE_ENV": '"production"',
       delimiters: ["", ""],
     }),
