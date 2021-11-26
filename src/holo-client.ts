@@ -4,20 +4,15 @@ import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
 import HoloSdk from "@holo-host/web-sdk";
 
 export class HoloClient implements CellClient {
-  connection: any;
-
   #handlers: Array<AppSignalCb> = [];
 
-  private constructor(
-    protected url: string,
+  constructor(
+    protected connection: any,
     protected cellData: InstalledCell,
     protected branding: any
   ) {
-    this.connection = new HoloSdk.Connection(
-      this.connection.chaperone_url.origin,
-      (s: any) => this.handleSignal(s),
-      this.branding
-    );
+    this.#handlers.push(this.connection.signalCb);
+    this.connection.signalCb = (s: any) => this.handleSignal(s);
   }
 
   get cellId() {
