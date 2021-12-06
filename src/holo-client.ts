@@ -1,6 +1,8 @@
-import { CellClient } from "./cell-client";
-
 import { InstalledCell } from "@holochain/conductor-api";
+import WebSdk from "@holo-host/web-sdk";
+const WebSdkConnection = WebSdk.Connection;
+
+import { CellClient } from "./cell-client";
 import { BaseClient } from "./base-client";
 
 export class HoloClient extends BaseClient implements CellClient {
@@ -10,8 +12,11 @@ export class HoloClient extends BaseClient implements CellClient {
     protected branding: any
   ) {
     super();
-    this.handlers.push(this.connection.signalCb);
-    this.connection.signalCb = (s: any) => this.handleSignal(s);
+    new WebSdkConnection(
+      this.connection.chaperone_url,
+      (s: any) => this.handleSignal(s),
+      branding
+    );
   }
 
   get cellId() {

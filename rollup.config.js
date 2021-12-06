@@ -10,10 +10,10 @@ export default {
   input: `src/index.ts`,
   output: [{ dir: "dist", format: "es", sourcemap: true }],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash-es')
-  external: ["@holochain/conductor-api"],
+  external: [...Object.keys(pkg.dependencies)],
   plugins: [
     replace({
-      '  COMB = ': '  if (typeof window !== "undefined") window.COMB = ',
+      "  COMB = ": '  if (typeof window !== "undefined") window.COMB = ',
       "process.env.NODE_ENV": '"production"',
       delimiters: ["", ""],
     }),
