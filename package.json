@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js",
-    "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
+    "publish-to-branch": "npm run build && rm -rf node_modules && gh-pages -d ./ -b build && npm i"
   },
   "repository": {
     "type": "git",

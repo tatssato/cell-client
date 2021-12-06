@@ -1,17 +1,16 @@
 import { CellClient } from "./cell-client";
 
-import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
-import HoloSdk from "@holo-host/web-sdk";
+import { InstalledCell } from "@holochain/conductor-api";
+import { BaseClient } from "./base-client";
 
-export class HoloClient implements CellClient {
-  #handlers: Array<AppSignalCb> = [];
-
+export class HoloClient extends BaseClient implements CellClient {
   constructor(
     protected connection: any,
     protected cellData: InstalledCell,
     protected branding: any
   ) {
-    this.#handlers.push(this.connection.signalCb);
+    super();
+    this.handlers.push(this.connection.signalCb);
     this.connection.signalCb = (s: any) => this.handleSignal(s);
   }
 
@@ -31,22 +30,5 @@ export class HoloClient implements CellClient {
       throw new Error(result.payload.message);
     }
     return result;
-  }
-
-  async addSignalHandler(signalHandler: AppSignalCb) {
-    this.#handlers.push(signalHandler);
-
-    return {
-      unsubscribe: () => {
-        const index = this.#handlers.findIndex((h) => h === signalHandler);
-        this.#handlers.splice(index, 1);
-      },
-    };
-  }
-
-  private handleSignal(signal: any) {
-    for (const handler of this.#handlers) {
-      handler(signal);
-    }
   }
 }
