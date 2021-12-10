@@ -35,20 +35,31 @@ See all documentation for the `AppWebsocket` [here](https://github.com/holochain
 ## Connecting to Chaperone (Holo)
 
 ```ts
-import { HoloClient } from "@holochain-open-dev/cell-client";
-import { Connection as WebSdkConnection } from "@holo-host/web-sdk";
+import { WebSdkClient, HoloClient } from "@holochain-open-dev/cell-client";
 
 async function setupHoloClient() {
-  const connection = new WebSdkConnection(); // URL for chaperone
+  const client = new WebSdkClient("https://devnet-chaperone.holo.host", {
+    app_name: "elemental-chess",
+    skip_registration: true,
+  });
 
-  await connection.ready();
-  await connection.signIn();
+  await client.connection.ready();
+  await client.connection.signIn();
 
-  const appInfo = await connection.appInfo();
+  const appInfo = await client.connection.appInfo("my-app-id");
+
+  if (!appInfo.cell_data)
+    throw new Error(`Holo appInfo() failed: ${JSON.stringify(appInfo)}`);
 
   const cellData = appInfo.cell_data[0];
 
-  return new HoloClient("http://localhost:24273", cellData);
+  if (!(cellData.cell_id[0] instanceof Uint8Array)) {
+    cellData.cell_id = [
+      new Uint8Array((cellData.cell_id[0] as any).data),
+      new Uint8Array((cellData.cell_id[1] as any).data),
+    ] as any;
+  }
+  return new HoloClient(client, cellData);
 }
 ```
 
@@ -58,7 +69,7 @@ See all documentation for the `WebSdkConnection` [here](https://github.com/holo-
 
 ```ts
 import { CellClient } from "@holochain-open-dev/cell-client";
-import { AgentPubKeyB64 } from '@holochain-open-dev/core-types';
+import { AgentPubKeyB64 } from "@holochain-open-dev/core-types";
 
 export class InvitationsService {
   constructor(
@@ -93,11 +104,13 @@ export class InvitationsStore {
   public invitations: Dictionary<InvitationEntryInfo> = {};
 
   constructor(protected cellClient: CellClient) {
-    cellClient.addSignalHandler((signal) => {
-      // Do something with the signal: eg. update invitations dictionary
-    }).then(({ unsubscribe }) => {
-      this.unsubscribe = unsubscribe;
-    });
+    cellClient
+      .addSignalHandler((signal) => {
+        // Do something with the signal: eg. update invitations dictionary
+      })
+      .then(({ unsubscribe }) => {
+        this.unsubscribe = unsubscribe;
+      });
   }
 }
 ```

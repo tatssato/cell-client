@@ -1,6 +1,4 @@
-import { CellClient } from "./cell-client";
-
-import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
+import { AppSignalCb } from "@holochain/conductor-api";
 
 export abstract class BaseClient {
   protected handlers: Array<AppSignalCb> = [];
