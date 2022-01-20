@@ -1,6 +1,6 @@
 # Cell Client
 
-Temporary wrapper around AppWebsocket and @holo-host/web-sdk.
+Temporary wrapper around `@holochain/client` and `@holo-host/web-sdk`.
 
 This is useful to build agnostic UIs, that can potentially connect both with Holo and with Holochain infrastructure transparently.
 
@@ -16,7 +16,7 @@ npm i "https://github.com/holochain-open-dev/cell-client#build"
 
 ```ts
 import { HolochainClient } from "@holochain-open-dev/cell-client";
-import { AppWebsocket } from "@holochain/conductor-api";
+import { AppWebsocket } from "@holochain/client";
 
 async function setupHolochainClient() {
   const appWs = await AppWebsocket.connect("ws://localhost:8888");
@@ -30,7 +30,7 @@ async function setupHolochainClient() {
 }
 ```
 
-See all documentation for the `AppWebsocket` [here](https://github.com/holochain/holochain-conductor-api).
+See all documentation for the `AppWebsocket` [here](https://github.com/holochain/holochain-client-js).
 
 ## Connecting to Chaperone (Holo)
 

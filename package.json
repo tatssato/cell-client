@@ -1,6 +1,6 @@
 {
   "name": "@holochain-open-dev/cell-client",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Temporary wrapper around @holochain/conductor-api and @holo-host/web-sdk",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/holochain-open-dev/cell-client#readme",
   "dependencies": {
-    "@holochain/conductor-api": "0.2.4"
+    "@holochain/client": "^0.3.2"
   },
   "devDependencies": {
     "@holo-host/web-sdk": "^0.5.3",

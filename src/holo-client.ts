@@ -1,4 +1,4 @@
-import { AppSignalCb, InstalledCell } from "@holochain/conductor-api";
+import { AppSignalCb, InstalledCell } from "@holochain/client";
 import WebSdk from "@holo-host/web-sdk";
 const WebSdkConnection = WebSdk.Connection;
 

@@ -1,4 +1,4 @@
-import { AppSignalCb } from "@holochain/conductor-api";
+import { AppSignalCb } from "@holochain/client";
 
 export abstract class BaseClient {
   protected handlers: Array<AppSignalCb> = [];

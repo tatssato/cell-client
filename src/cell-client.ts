@@ -1,4 +1,4 @@
-import { AppSignalCb, CellId } from "@holochain/conductor-api";
+import { AppSignalCb, CellId } from "@holochain/client";
 
 export interface CellClient {
   cellId: CellId;

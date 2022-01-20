@@ -1,4 +1,4 @@
-import { AppWebsocket, InstalledCell } from "@holochain/conductor-api";
+import { AppWebsocket, InstalledCell } from "@holochain/client";
 import { BaseClient } from "./base-client";
 import { CellClient } from "./cell-client";
 
@@ -25,7 +25,7 @@ export class HolochainClient extends BaseClient implements CellClient {
   ): Promise<any> {
     return this.appWebsocket.callZome(
       {
-        cap: null as any,
+        cap_secret: null,
         cell_id: this.cellId,
         zome_name: zomeName,
         fn_name: fnName,
