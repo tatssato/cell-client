@@ -7,7 +7,8 @@ export interface CellClient {
     zomeName: string,
     fnName: string,
     payload: any,
-    timeout?: number
+    timeout?: number,
+    cellId?: CellId
   ): Promise<any>;
 
   addSignalHandler(

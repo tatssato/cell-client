@@ -21,7 +21,8 @@ export class HolochainClient extends BaseClient implements CellClient {
     zomeName: string,
     fnName: string,
     payload: any,
-    timeout = 15000
+    timeout = 15000,
+    cellId = this.cellId[1]
   ): Promise<any> {
     return this.appWebsocket.callZome(
       {
@@ -30,7 +31,7 @@ export class HolochainClient extends BaseClient implements CellClient {
         zome_name: zomeName,
         fn_name: fnName,
         payload: payload,
-        provenance: this.cellId[1],
+        provenance: cellId,
       },
       timeout
     );
